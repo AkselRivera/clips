@@ -14,7 +14,10 @@
                 <!-- Navigation Links -->
                 <ng-container *ngIf="!(auth.isAuth$ | async)">
                     <li>
-                        <a class="px-2" href="#" (click)="openModal($event)"
+                        <a
+                            class="px-2 text-sm md:text-lg"
+                            href="#"
+                            (click)="openModal($event)"
                             >Login / Register</a
                         >
                     </li>
@@ -54,13 +57,25 @@
             <ul class="flex flex-row ml-auto">
                 <ng-container *ngIf="auth.isAuth$ | async">
                     <li>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/dxjqoygy.json"
+                            trigger="loop"
+                            delay="4000"
+                            colors="primary:#818CF8,secondary:#	818CF8"
+                            class="hidden md:block overflow-hidden border-2 border-indigo-400 rounded-full"
+                            state="hover-looking-around"
+                            style="width: 30px; height: 30px"
+                        >
+                        </lord-icon>
+                    </li>
+                    <li>
                         <a class="hidden px-2 md:inline md:text-lg" href="#">
                             {{ userData?.displayName }}
                         </a>
                     </li>
                     <li>
                         <a
-                            class="px-2 text-sm md:text-lg"
+                            class="px-2 text-sm md:text-lg hover:text-red-500 ease-in-out duration-300"
                             href="#"
                             (click)="auth.logOut($event)"
                             >Log out</a

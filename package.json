@@ -25,6 +25,8 @@
     "@types/uuid": "^8.3.4",
     "@types/video.js": "^7.3.42",
     "@videojs/themes": "^1.0.1",
+    "lord-icon-element": "^3.4.2",
+    "lottie-web": "^5.9.6",
     "ngx-mask": "^14.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
