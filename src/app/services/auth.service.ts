@@ -7,7 +7,7 @@ import {
     AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
-import { delay, map, filter, switchMap } from 'rxjs/operators';
+import { delay, map, filter, switchMap, last } from 'rxjs/operators';
 
 import IUser from '../models/user.model';
 
@@ -19,6 +19,7 @@ export class AuthService {
     public isAuth$: Observable<boolean>;
     public isAuthWithDelay$: Observable<boolean>;
     private redirect = false;
+    // public userData : Object;
 
     constructor(
         private auth: AngularFireAuth,
@@ -28,7 +29,7 @@ export class AuthService {
     ) {
         this.userCollection = db.collection('users');
         this.isAuth$ = auth.user.pipe(map((user) => !!user));
-        this.isAuthWithDelay$ = this.isAuth$.pipe(delay(1200));
+        this.isAuthWithDelay$ = this.isAuth$.pipe(delay(1000));
 
         this.router.events
             .pipe(
@@ -72,5 +73,12 @@ export class AuthService {
             await this.router.navigateByUrl('/');
         }
         await this.auth.signOut();
+    }
+
+    public async getUSerInfo(): Promise<Object> {
+        let info = await this.auth.currentUser;
+        // console.log(info?.toJSON());
+
+        return info!.toJSON();
     }
 }
